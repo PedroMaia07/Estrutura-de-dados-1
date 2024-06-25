@@ -39,11 +39,41 @@ Node *insereFinal(Node *L, int valor){
     return L;
 }
 
+Node *excluiInicio(Node *L){
+    Node *aux = L;
+    if(aux == NULL) return NULL;
+    else{
+        L = L->prox;
+        free(aux);
+        return L;
+    }
+}
+
+Node *excluiFinal(Node *L){
+    Node *aux = L;
+    Node *pred = NULL;
+    if (aux == NULL) return NULL;
+    else{
+        while (aux->prox != NULL)
+        {
+            pred = aux;
+            aux = aux->prox;
+        }
+        if (pred == NULL) L = NULL;
+        else pred->prox = NULL;
+        free(aux);
+        return L;
+    }
+}
+
+
+
+
 void imprimeLista(Node *L){
     Node *aux = L;
     printf("\nLista");
     
-    if (aux == NULL) printf(" -> Sua lista ainda esta vazia");
+    if (aux == NULL) printf(" -> Sua lista esta vazia");
     while (aux != NULL)
     {
         printf(" -> %d", aux->chave);
@@ -51,23 +81,42 @@ void imprimeLista(Node *L){
     }
 }
 
+
+
+
 void painelDeOpcoes(){
+
     printf("\n\nPossiveis operações:\n");
     printf("0 - Finalizar oprerações\n");
-    printf("1 - Inseir no inicio da lista\n");
-    printf("2 - Inseir no final da lista\n");
+    printf("1 - Inserir no inicio da lista\n");
+    printf("2 - Inserir no final da lista\n");
+    printf("3 - Excluir no inicio da lista\n");
+    printf("4 - Excluir no final da lista\n");
     printf("Por favor, digite qual operação deseja: ");
 
 }
 
 Node *opcoes(Node *L,int escolha){
-    int valor;
-    printf("Digite o valor que deseja adicionar: ");
-    scanf("%d", &valor);
-
-    if (escolha == 1) L = insereInicio(L, valor);
-    else if (escolha == 2) L = insereFinal(L, valor);
     
+    if(escolha == 0){
+        printf("\n**********************************************\nServiço encerrado!\n\nA lista resultante foi:\n");
+        imprimeLista(L);
+        printf("\n**********************************************\n");
+    }
+    else if (escolha == 1){
+        int valor;
+        printf("Digite o valor que deseja adicionar: ");
+        scanf("%d", &valor);
+        L = insereInicio(L, valor);
+    } 
+    else if (escolha == 2){
+        int valor;
+        printf("Digite o valor que deseja adicionar: ");
+        scanf("%d", &valor);
+        L = insereFinal(L, valor);
+    } 
+    else if (escolha == 3) L = excluiInicio(L);
+    else if (escolha == 4) L = excluiFinal(L);
     return L;
 }
 
@@ -82,17 +131,9 @@ int main(){
         painelDeOpcoes();
         scanf("%d", &escolha);
 
-        if (escolha > 0 && escolha <3) {
-            L = opcoes(L, escolha);  
-        }
-        else{
-            system("clear");
-            printf("Serviço encerrado!\n\nA lista resultante foi:\n");
-            imprimeLista(L);
-            printf("\n");
-        }
-        
-        
+        if (escolha >= 0 && escolha <5) {
+            L = opcoes(L, esc        }
+
     } while (escolha != 0);
     
 
