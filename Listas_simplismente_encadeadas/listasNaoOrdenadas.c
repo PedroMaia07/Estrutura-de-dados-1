@@ -66,8 +66,27 @@ Node *excluiFinal(Node *L){
     }
 }
 
-
-
+Node *excluiChave(Node *L, int valor){
+    Node *aux = L;
+    Node *pred = NULL;
+    if (aux == NULL) return NULL;
+    else{
+        while (aux != NULL && valor != aux->chave)
+        {
+            pred = aux;
+            aux = aux->prox;
+        }
+        if (aux == NULL) {
+            printf("Chave Não esta na lista\n");
+            return L;
+        }else{
+            if (pred == NULL) L = L->prox;
+            else pred->prox = aux->prox;
+            free(aux);
+            return L;
+        }
+    }
+}
 
 void imprimeLista(Node *L){
     Node *aux = L;
@@ -92,6 +111,7 @@ void painelDeOpcoes(){
     printf("2 - Inserir no final da lista\n");
     printf("3 - Excluir no inicio da lista\n");
     printf("4 - Excluir no final da lista\n");
+    printf("5 - Excluir uma chave especifica da lista\n");
     printf("Por favor, digite qual operação deseja: ");
 
 }
@@ -117,6 +137,12 @@ Node *opcoes(Node *L,int escolha){
     } 
     else if (escolha == 3) L = excluiInicio(L);
     else if (escolha == 4) L = excluiFinal(L);
+    else if (escolha == 5) {
+        int valor;
+        printf("Digite o valor que deseja adicionar: ");
+        scanf("%d", &valor);
+        L = excluiChave(L, valor);
+    }
     return L;
 }
 
@@ -131,8 +157,9 @@ int main(){
         painelDeOpcoes();
         scanf("%d", &escolha);
 
-        if (escolha >= 0 && escolha <5) {
-            L = opcoes(L, esc        }
+        if (escolha >= 0 && escolha <6) {
+            L = opcoes(L, escolha);  
+        }
 
     } while (escolha != 0);
     
