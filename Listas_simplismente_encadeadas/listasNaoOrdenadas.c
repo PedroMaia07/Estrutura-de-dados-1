@@ -1,3 +1,6 @@
+//Para rodar o programa use gcc -o teste listasNaoOrdenadas.c
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -105,6 +108,7 @@ void imprimeLista(Node *L){
 
 void painelDeOpcoes(){
 
+    system("clear");
     printf("\n\nPossiveis operações:\n");
     printf("0 - Finalizar oprerações\n");
     printf("1 - Inserir no inicio da lista\n");
@@ -146,13 +150,12 @@ Node *opcoes(Node *L,int escolha){
     return L;
 }
 
-int main(){
+int main(void){
     Node *L = NULL;
 
     int escolha = 1;
     do
     {
-        system("clear");
         imprimeLista(L);
         painelDeOpcoes();
         scanf("%d", &escolha);
