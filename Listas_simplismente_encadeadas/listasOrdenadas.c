@@ -80,9 +80,10 @@ void imprimeLista(Node *L){
 }
 
 
-void painelDeOpcoes(){
+void painelDeOpcoes(Node *L){
 
     system("clear");
+    imprimeLista(L);
     printf("\n\nNo caso, como é uma lista ordenada de strings, esta ordenada em ordem alfabetica.\n\n");
     printf("Possiveis operações: \n");
     printf("0 - Finalizar oprerações\n");
@@ -137,8 +138,7 @@ int main(void){
 
     do {
 
-        imprimeLista(L);
-        painelDeOpcoes();
+        painelDeOpcoes(L);
         int resultado = scanf("%d", &escolha); //O scanf retorna o número de itens lidos com sucesso
         getchar(); // Consome o caractere de nova linha deixado pelo scanf
 
