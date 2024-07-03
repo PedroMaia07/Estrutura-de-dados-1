@@ -106,9 +106,10 @@ void imprimeLista(Node *L){
 
 
 
-void painelDeOpcoes(){
+void painelDeOpcoes(Node *L){
 
     system("clear");
+    imprimeLista(L);
     printf("\n\nPossiveis operações:\n");
     printf("0 - Finalizar oprerações\n");
     printf("1 - Inserir no inicio da lista\n");
@@ -156,8 +157,8 @@ int main(void){
     int escolha = 1;
     do
     {
-        imprimeLista(L);
-        painelDeOpcoes();
+        
+        painelDeOpcoes(L);
         scanf("%d", &escolha);
 
         if (escolha >= 0 && escolha <6) {
