@@ -71,7 +71,7 @@ Node *excluiSoldado(Node *L, int n) {
     Node *aux = L->prox;
     Node *pred = L;
     
-    for (int i = 2; i < n; i++) {        // Comeca em 2 por causa que o aux comeca no segundo nome. 
+    for (int i = 1; i < n; i++) {        
         pred = aux;
         aux = aux->prox;
     }
